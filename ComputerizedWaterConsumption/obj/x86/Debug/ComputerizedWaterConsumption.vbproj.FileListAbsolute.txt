@@ -1,0 +1,24 @@
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\bin\Debug\ComputerizedWaterConsumption.exe
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\bin\Debug\ComputerizedWaterConsumption.pdb
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\bin\Debug\ComputerizedWaterConsumption.xml
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_login.resources
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.Resources.resources
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.vbproj.GenerateResource.Cache
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.exe
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.xml
+C:\Users\user\AppData\Local\Temporary Projects\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.pdb
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.exe
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.xml
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.pdb
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\bin\Debug\ComputerizedWaterConsumption.exe
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\bin\Debug\ComputerizedWaterConsumption.pdb
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\bin\Debug\ComputerizedWaterConsumption.xml
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_login.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.Resources.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.vbproj.GenerateResource.Cache
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_transaction.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.vbprojResolveAssemblyReference.cache
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_history.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_dashboard.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_create_account.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_account_details.resources
