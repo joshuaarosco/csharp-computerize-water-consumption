@@ -31,7 +31,6 @@ Partial Class frm_dashboard
         Me.btn_view_account = New System.Windows.Forms.Button()
         Me.txt_search = New System.Windows.Forms.TextBox()
         Me.lbl_search = New System.Windows.Forms.Label()
-        Me.lbl_result = New System.Windows.Forms.Label()
         CType(Me.datagrid_transaction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -142,23 +141,11 @@ Partial Class frm_dashboard
         Me.lbl_search.TabIndex = 20
         Me.lbl_search.Text = "Search"
         '
-        'lbl_result
-        '
-        Me.lbl_result.AutoSize = True
-        Me.lbl_result.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_result.ForeColor = System.Drawing.Color.DimGray
-        Me.lbl_result.Location = New System.Drawing.Point(27, 76)
-        Me.lbl_result.Name = "lbl_result"
-        Me.lbl_result.Size = New System.Drawing.Size(37, 15)
-        Me.lbl_result.TabIndex = 21
-        Me.lbl_result.Text = "result"
-        '
         'frm_dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(919, 424)
-        Me.Controls.Add(Me.lbl_result)
         Me.Controls.Add(Me.lbl_search)
         Me.Controls.Add(Me.txt_search)
         Me.Controls.Add(Me.btn_view_account)
@@ -185,5 +172,4 @@ Partial Class frm_dashboard
     Friend WithEvents btn_view_account As System.Windows.Forms.Button
     Friend WithEvents txt_search As System.Windows.Forms.TextBox
     Friend WithEvents lbl_search As System.Windows.Forms.Label
-    Friend WithEvents lbl_result As System.Windows.Forms.Label
 End Class
