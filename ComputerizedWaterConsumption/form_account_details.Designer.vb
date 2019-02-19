@@ -34,6 +34,9 @@ Partial Class frm_account_details
         Me.txt_fname = New System.Windows.Forms.TextBox()
         Me.btn_update = New System.Windows.Forms.Button()
         Me.lbl_title = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btn_minimize = New System.Windows.Forms.Button()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'btn_exit
@@ -43,7 +46,7 @@ Partial Class frm_account_details
         Me.btn_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_exit.Font = New System.Drawing.Font("Candara", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_exit.Location = New System.Drawing.Point(503, 0)
+        Me.btn_exit.Location = New System.Drawing.Point(502, 1)
         Me.btn_exit.Name = "btn_exit"
         Me.btn_exit.Size = New System.Drawing.Size(30, 30)
         Me.btn_exit.TabIndex = 31
@@ -57,7 +60,7 @@ Partial Class frm_account_details
         Me.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_close.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
         Me.btn_close.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_close.Location = New System.Drawing.Point(281, 291)
+        Me.btn_close.Location = New System.Drawing.Point(281, 290)
         Me.btn_close.Name = "btn_close"
         Me.btn_close.Size = New System.Drawing.Size(221, 30)
         Me.btn_close.TabIndex = 30
@@ -161,7 +164,7 @@ Partial Class frm_account_details
         Me.btn_update.FlatAppearance.BorderSize = 0
         Me.btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_update.ForeColor = System.Drawing.SystemColors.Control
-        Me.btn_update.Location = New System.Drawing.Point(33, 290)
+        Me.btn_update.Location = New System.Drawing.Point(33, 289)
         Me.btn_update.Name = "btn_update"
         Me.btn_update.Size = New System.Drawing.Size(221, 30)
         Me.btn_update.TabIndex = 29
@@ -177,6 +180,29 @@ Partial Class frm_account_details
         Me.lbl_title.Size = New System.Drawing.Size(145, 24)
         Me.lbl_title.TabIndex = 32
         Me.lbl_title.Text = "Update Account"
+        '
+        'Panel1
+        '
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btn_minimize)
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(533, 343)
+        Me.Panel1.TabIndex = 37
+        '
+        'btn_minimize
+        '
+        Me.btn_minimize.BackColor = System.Drawing.Color.Gainsboro
+        Me.btn_minimize.FlatAppearance.BorderSize = 0
+        Me.btn_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_minimize.Font = New System.Drawing.Font("Candara", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_minimize.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btn_minimize.Location = New System.Drawing.Point(471, 0)
+        Me.btn_minimize.Name = "btn_minimize"
+        Me.btn_minimize.Size = New System.Drawing.Size(30, 30)
+        Me.btn_minimize.TabIndex = 9
+        Me.btn_minimize.Text = "_"
+        Me.btn_minimize.UseVisualStyleBackColor = False
         '
         'frm_account_details
         '
@@ -195,10 +221,12 @@ Partial Class frm_account_details
         Me.Controls.Add(Me.txt_fname)
         Me.Controls.Add(Me.btn_update)
         Me.Controls.Add(Me.lbl_title)
+        Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "frm_account_details"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "form_account_details"
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -215,4 +243,6 @@ Partial Class frm_account_details
     Friend WithEvents txt_fname As System.Windows.Forms.TextBox
     Friend WithEvents btn_update As System.Windows.Forms.Button
     Friend WithEvents lbl_title As System.Windows.Forms.Label
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents btn_minimize As System.Windows.Forms.Button
 End Class

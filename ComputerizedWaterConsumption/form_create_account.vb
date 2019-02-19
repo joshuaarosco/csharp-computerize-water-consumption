@@ -52,11 +52,15 @@ Public Class frm_create_account
     End Sub
 
     Private Sub btn_exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_exit.Click
-        Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "  System Message", MessageBoxButtons.YesNo)
+        Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "  System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.No Then
 
         ElseIf result = DialogResult.Yes Then
             Application.Exit()
         End If
+    End Sub
+
+    Private Sub btn_minimize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_minimize.Click
+        Me.WindowState = FormWindowState.Minimized
     End Sub
 End Class

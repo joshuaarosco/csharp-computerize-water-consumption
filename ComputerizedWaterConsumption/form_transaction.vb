@@ -49,7 +49,7 @@ Public Class frm_transaction
     End Sub
 
     Private Sub btn_exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_exit.Click
-        Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "  System Message", MessageBoxButtons.YesNo)
+        Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "  System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.No Then
 
         ElseIf result = DialogResult.Yes Then
@@ -201,7 +201,11 @@ Public Class frm_transaction
     End Sub
 
     Private Sub btn_total_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_total.Click
-        get_total()
+        If datagrid_transaction.Rows.Count = 0 Then
+            MessageBox.Show("Ooops! No rows detected.", "  System Message", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Else
+            get_total()
+        End If
     End Sub
 
     Sub get_total()
@@ -232,16 +236,17 @@ Public Class frm_transaction
         If result = DialogResult.No Then
 
         ElseIf result = DialogResult.Yes Then
+
             Dim total_cubic_used As New List(Of Decimal)
             Dim total_peso As New List(Of Decimal)
             For x As Integer = 0 To datagrid_transaction.Rows.Count - 1
                 total_cubic_used.Add(datagrid_transaction.Rows(x).Cells(3).Value())
                 total_peso.Add(datagrid_transaction.Rows(x).Cells(4).Value())
 
-                Dim val_id = datagrid_transaction.Rows(x).Cells(0).Value()
-
-                create_history(val_id)
-                update_meter_tracker(val_id)
+                'Dim val_id = datagrid_transaction.Rows(x).Cells(0).Value()
+                'Console.WriteLine(val_id)
+                create_history()
+                update_meter_tracker()
             Next
             table.Rows.Add("",
                         "",
@@ -257,18 +262,19 @@ Public Class frm_transaction
                         "")
 
             datagrid_transaction.DataSource = table
+            create_meter_transaction(total_cubic_used.Sum, total_peso.Sum)
         End If
     End Sub
 
-    Sub create_history(ByVal val_id)
-        Console.WriteLine(val_id)
+    Sub create_history()
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
 
         MysqlConn.Open()
         Dim Query As String
-        Query = "select * from computerized_water_consumption_db.meter_tracker where user_id = '" & IDPass & "' and id = '" & val_id & "'"
+        Console.WriteLine("Im here at create history")
+        Query = "select * from computerized_water_consumption_db.meter_tracker where user_id = '" & IDPass & "' and status is null"
         Dim Adapter As New MySqlDataAdapter(Query, MysqlConn)
         Dim Dataset As New DataSet()
 
@@ -290,6 +296,7 @@ Public Class frm_transaction
 
 
     Sub insert_history(ByVal ins_user_id, ByVal ins_pcm, ByVal ins_ccm, ByVal ins_ucm, ByVal ins_peso, ByVal ins_created_at)
+        Console.WriteLine("Im here at insert history")
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
@@ -313,7 +320,7 @@ Public Class frm_transaction
     End Sub
 
 
-    Sub update_meter_tracker(ByVal val_id)
+    Sub update_meter_tracker()
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
@@ -321,7 +328,7 @@ Public Class frm_transaction
         Try
             MysqlConn.Open()
             Dim Query As String
-            Query = "update computerized_water_consumption_db.meter_tracker set status='moved' where user_id=" & IDPass & " and id = " & val_id
+            Query = "update computerized_water_consumption_db.meter_tracker set status='moved' where user_id=" & IDPass & " and status is null"
             Command = New MySqlCommand(Query, MysqlConn)
             Reader = Command.ExecuteReader
             MysqlConn.Close()
@@ -332,4 +339,27 @@ Public Class frm_transaction
         End Try
     End Sub
 
+    Sub create_meter_transaction(ByVal total_cubic_meter, ByVal peso)
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
+        Dim Reader As MySqlDataReader
+
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "insert into computerized_water_consumption_db.meter_transaction (user_id,total_cubic_meter,peso,status,created_at) values ('" & IDPass & "', '" & total_cubic_meter & "','" & peso & "', 'unpaid', '" & DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") & "')"
+            Command = New MySqlCommand(Query, MysqlConn)
+            Reader = Command.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+    End Sub
+
+    Private Sub btn_minimize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_minimize.Click
+        Me.WindowState = FormWindowState.Minimized
+    End Sub
 End Class

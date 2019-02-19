@@ -22,6 +22,7 @@ Partial Class frm_login
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_login))
         Me.btn_exit = New System.Windows.Forms.Button()
         Me.txt_username = New System.Windows.Forms.TextBox()
@@ -29,8 +30,12 @@ Partial Class frm_login
         Me.btn_login = New System.Windows.Forms.Button()
         Me.lbl_username = New System.Windows.Forms.Label()
         Me.lbl_password = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btn_minimize = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,7 +47,7 @@ Partial Class frm_login
         Me.btn_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_exit.Font = New System.Drawing.Font("Candara", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_exit.Location = New System.Drawing.Point(520, 0)
+        Me.btn_exit.Location = New System.Drawing.Point(519, 1)
         Me.btn_exit.Name = "btn_exit"
         Me.btn_exit.Size = New System.Drawing.Size(30, 30)
         Me.btn_exit.TabIndex = 0
@@ -107,6 +112,32 @@ Partial Class frm_login
         Me.lbl_password.TabIndex = 5
         Me.lbl_password.Text = "Password"
         '
+        'Timer1
+        '
+        '
+        'Panel1
+        '
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btn_minimize)
+        Me.Panel1.Location = New System.Drawing.Point(267, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(283, 350)
+        Me.Panel1.TabIndex = 7
+        '
+        'btn_minimize
+        '
+        Me.btn_minimize.BackColor = System.Drawing.Color.Gainsboro
+        Me.btn_minimize.FlatAppearance.BorderSize = 0
+        Me.btn_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_minimize.Font = New System.Drawing.Font("Candara", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_minimize.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btn_minimize.Location = New System.Drawing.Point(221, 0)
+        Me.btn_minimize.Name = "btn_minimize"
+        Me.btn_minimize.Size = New System.Drawing.Size(30, 30)
+        Me.btn_minimize.TabIndex = 8
+        Me.btn_minimize.Text = "_"
+        Me.btn_minimize.UseVisualStyleBackColor = False
+        '
         'PictureBox2
         '
         Me.PictureBox2.BackgroundImage = Global.ComputerizedWaterConsumption.My.Resources.Resources.face02
@@ -141,11 +172,14 @@ Partial Class frm_login
         Me.Controls.Add(Me.txt_username)
         Me.Controls.Add(Me.btn_exit)
         Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_login"
+        Me.Opacity = 0.01R
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login Form"
+        Me.Panel1.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -160,5 +194,8 @@ Partial Class frm_login
     Friend WithEvents lbl_username As System.Windows.Forms.Label
     Friend WithEvents lbl_password As System.Windows.Forms.Label
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents btn_minimize As System.Windows.Forms.Button
 
 End Class

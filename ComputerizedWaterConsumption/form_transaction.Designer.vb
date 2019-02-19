@@ -38,7 +38,10 @@ Partial Class frm_transaction
         Me.btn_history = New System.Windows.Forms.Button()
         Me.btn_back = New System.Windows.Forms.Button()
         Me.btn_total = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btn_minimize = New System.Windows.Forms.Button()
         CType(Me.datagrid_transaction, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'datagrid_transaction
@@ -63,7 +66,7 @@ Partial Class frm_transaction
         Me.btn_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_exit.Font = New System.Drawing.Font("Candara", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btn_exit.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btn_exit.Location = New System.Drawing.Point(831, 0)
+        Me.btn_exit.Location = New System.Drawing.Point(830, 1)
         Me.btn_exit.Name = "btn_exit"
         Me.btn_exit.Size = New System.Drawing.Size(30, 30)
         Me.btn_exit.TabIndex = 1
@@ -230,6 +233,29 @@ Partial Class frm_transaction
         Me.btn_total.Text = "Total"
         Me.btn_total.UseVisualStyleBackColor = False
         '
+        'Panel1
+        '
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btn_minimize)
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(861, 424)
+        Me.Panel1.TabIndex = 17
+        '
+        'btn_minimize
+        '
+        Me.btn_minimize.BackColor = System.Drawing.Color.Gainsboro
+        Me.btn_minimize.FlatAppearance.BorderSize = 0
+        Me.btn_minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_minimize.Font = New System.Drawing.Font("Candara", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_minimize.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btn_minimize.Location = New System.Drawing.Point(799, 0)
+        Me.btn_minimize.Name = "btn_minimize"
+        Me.btn_minimize.Size = New System.Drawing.Size(30, 30)
+        Me.btn_minimize.TabIndex = 9
+        Me.btn_minimize.Text = "_"
+        Me.btn_minimize.UseVisualStyleBackColor = False
+        '
         'frm_transaction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -250,12 +276,14 @@ Partial Class frm_transaction
         Me.Controls.Add(Me.btn_calculate)
         Me.Controls.Add(Me.btn_exit)
         Me.Controls.Add(Me.datagrid_transaction)
+        Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frm_transaction"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form2"
         CType(Me.datagrid_transaction, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -275,4 +303,6 @@ Partial Class frm_transaction
     Friend WithEvents btn_history As System.Windows.Forms.Button
     Friend WithEvents btn_back As System.Windows.Forms.Button
     Friend WithEvents btn_total As System.Windows.Forms.Button
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents btn_minimize As System.Windows.Forms.Button
 End Class
