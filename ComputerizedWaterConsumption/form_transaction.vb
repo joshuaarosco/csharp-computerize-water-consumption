@@ -202,8 +202,10 @@ Public Class frm_transaction
 
     Private Sub btn_total_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_total.Click
         If datagrid_transaction.Rows.Count = 0 Then
-            MessageBox.Show("Ooops! No rows detected.", "  System Message", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Ooops! No rows detected", "  System Message", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
+            btn_total.Enabled = False
+            btn_total.BackColor = Color.Silver
             get_total()
         End If
     End Sub

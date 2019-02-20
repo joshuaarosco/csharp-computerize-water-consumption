@@ -409,11 +409,11 @@ Partial Class frm_dashboard
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.Label10.Location = New System.Drawing.Point(204, 48)
+        Me.Label10.Location = New System.Drawing.Point(236, 48)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(73, 15)
+        Me.Label10.Size = New System.Drawing.Size(38, 15)
         Me.Label10.TabIndex = 26
-        Me.Label10.Text = "Paid Users :"
+        Me.Label10.Text = "Paid :"
         '
         'lbl_paid
         '
@@ -442,11 +442,11 @@ Partial Class frm_dashboard
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.Label13.Location = New System.Drawing.Point(189, 63)
+        Me.Label13.Location = New System.Drawing.Point(218, 63)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(88, 15)
+        Me.Label13.Size = New System.Drawing.Size(56, 15)
         Me.Label13.TabIndex = 27
-        Me.Label13.Text = "Unpaid Users :"
+        Me.Label13.Text = "Unpaid  :"
         '
         'Panel1
         '

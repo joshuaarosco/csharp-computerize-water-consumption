@@ -31,7 +31,7 @@ Public Class frm_dashboard
         table.Columns.Add("Name", Type.GetType("System.String"))
         table.Columns.Add("Address", Type.GetType("System.String"))
         table.Columns.Add("Contact", Type.GetType("System.String"))
-        'table.Columns.Add("Account Status", Type.GetType("System.String"))
+        table.Columns.Add("Status", Type.GetType("System.String"))
         table.Columns.Add("Created At", Type.GetType("System.String"))
         datagrid_transaction.DataSource = table
 
@@ -48,6 +48,7 @@ Public Class frm_dashboard
             Query = "select * from computerized_water_consumption_db.user where id <> '1' order by created_at desc"
             Dim Adapter As New MySqlDataAdapter(Query, MysqlConn)
             Dim Dataset As New DataSet()
+            MysqlConn.Close()
 
             If Adapter.Fill(Dataset) Then
                 For x As Integer = 0 To Dataset.Tables(0).Rows.Count - 1
@@ -56,8 +57,14 @@ Public Class frm_dashboard
                     Dim address As String = Dataset.Tables(0).Rows(x)("address").ToString()
                     Dim contact_number As String = Dataset.Tables(0).Rows(x)("contact_number").ToString()
                     Dim created_at As String = Dataset.Tables(0).Rows(x)("created_at").ToString()
+                    Dim status As String = get_user_status(id)
+                    table.Rows.Add(id, name, address, contact_number, status, created_at)
 
-                    table.Rows.Add(id, name, address, contact_number, created_at)
+                    If status = "UNPAID" Then
+                        datagrid_transaction.Rows(x).Cells(4).Style.ForeColor = Color.LightCoral
+                    Else
+                        datagrid_transaction.Rows(x).Cells(4).Style.ForeColor = Color.ForestGreen
+                    End If
                     'datagrid_transaction.Rows.Add(New String() {id, name, address, contact_number, "", created_at, ""})
                 Next
 
@@ -68,8 +75,6 @@ Public Class frm_dashboard
                 datagrid_transaction.Columns(0).Visible = False
                 datagrid_transaction.Columns.Add(columnButton)
             End If
-
-            MysqlConn.Close()
         Catch ex As Exception
             MessageBox.Show(ex.Message)
         Finally
@@ -125,7 +130,12 @@ Public Class frm_dashboard
     End Sub
 
     Private Sub btn_view_transaction_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_view_transaction.Click
+        Dim frm = New frm_transaction()
 
+        frm.IDPass = ID
+
+        frm.Show()
+        Me.Hide()
     End Sub
 
     Private Sub btn_view_account_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_view_account.Click
@@ -155,7 +165,7 @@ Public Class frm_dashboard
 
     Sub search()
         Dim data_view As New DataView(table)
-        data_view.RowFilter = String.Format("name Like '%{0}%'", txt_search.Text) + " OR " + String.Format("address Like '%{0}%'", txt_search.Text) + " OR " + String.Format("contact Like '%{0}%'", txt_search.Text)
+        data_view.RowFilter = String.Format("name Like '%{0}%'", txt_search.Text) + " OR " + String.Format("address Like '%{0}%'", txt_search.Text) + " OR " + String.Format("contact Like '%{0}%'", txt_search.Text) + " OR " + String.Format("status Like '%{0}%'", txt_search.Text)
         Console.WriteLine(data_view.RowFilter)
         datagrid_transaction.DataSource = data_view
 
@@ -318,6 +328,43 @@ Public Class frm_dashboard
         End While
         MysqlConn.Close()
         Dim paid_user_result As List(Of Integer) = paid_user_ids.Distinct().ToList
-        lbl_paid.Text = paid_user_result.Count
+        lbl_paid.Text = paid_user_result.Count - unpaid_user_result.Intersect(paid_user_result).Count
     End Sub
+
+    Function get_user_status(ByVal user_id)
+        MysqlConn.Open()
+        Dim Reader As MySqlDataReader
+        Dim Query_get_user As String
+        Query_get_user = "select * from computerized_water_consumption_db.meter_transaction where user_id = '" & user_id & "' and status = 'unpaid' order by created_at desc"
+        Command = New MySqlCommand(Query_get_user, MysqlConn)
+        Reader = Command.ExecuteReader
+        Dim counter As Decimal
+        While Reader.Read
+            counter += 1
+        End While
+        MysqlConn.Close()
+
+        If counter = 0 Then
+            MysqlConn.Open()
+            Dim NewReader As MySqlDataReader
+            Dim Query_get_transaction As String
+            Query_get_transaction = "select * from computerized_water_consumption_db.meter_transaction where user_id = '" & user_id & "' order by created_at desc"
+            Command = New MySqlCommand(Query_get_transaction, MysqlConn)
+            NewReader = Command.ExecuteReader
+            Dim new_counter As Decimal
+            While NewReader.Read
+                new_counter += 1
+                Exit While
+            End While
+            MysqlConn.Close()
+            If new_counter = 0 Then
+                Return "N/A"
+            Else
+                Return "PAID"
+            End If
+        Else
+            Return "UNPAID"
+        End If
+    End Function
+
 End Class
