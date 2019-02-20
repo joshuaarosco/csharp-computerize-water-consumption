@@ -43,6 +43,10 @@ ComputerizedWaterConsumption
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:ComputerizedWaterConsumption.My.Resources.Resources.water">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="T:ComputerizedWaterConsumption.My.Resources.Resources">
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
