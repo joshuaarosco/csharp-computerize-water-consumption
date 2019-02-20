@@ -15,7 +15,7 @@ Public Class frm_dashboard
         End If
     End Sub
 
-    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
+    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_auth_name.Click
 
     End Sub
 
@@ -25,6 +25,8 @@ Public Class frm_dashboard
         datagrid_transaction.MultiSelect = False
 
         lbl_date.Text = DateTime.Now.ToString("MMM dd, yyyy")
+        lbl_greet.Text = get_greetings()
+        Timer1.Enabled = True
 
         Dim columnButton As New DataGridViewButtonColumn
         table.Columns.Add("ID", Type.GetType("System.String"))
@@ -367,4 +369,28 @@ Public Class frm_dashboard
         End If
     End Function
 
+    Function get_greetings()
+        Dim date_now As DateTime
+        Dim hour As String
+        date_now = DateTime.Now.ToString("MMM dd, yyyy H:mm:ss")
+        hour = date_now.Hour.ToString
+
+        If hour < 5 Then
+            Return "You woke up early!"
+        ElseIf hour < 10 Then
+            Return "Good morning!"
+        ElseIf hour <= 12 Then
+            Return "It's almost lunch!"
+        ElseIf hour < 18 Then
+            Return "Good afternoon!"
+        ElseIf hour <= 22 Then
+            Return "Good evening!"
+        Else
+            Return "You must be working really hard!"
+        End If
+    End Function
+
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+        lbl_clock.Text = DateTime.Now.ToString("hh:mm tt")
+    End Sub
 End Class
