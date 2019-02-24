@@ -54,16 +54,16 @@ Partial Class frm_dashboard
         Me.lbl_unpaid = New System.Windows.Forms.Label()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.lbl_clock = New System.Windows.Forms.Label()
         Me.lbl_greet = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btn_minimize = New System.Windows.Forms.Button()
-        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.datagrid_transaction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl_account.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -90,9 +90,9 @@ Partial Class frm_dashboard
         Me.lbl_auth_name.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_auth_name.Location = New System.Drawing.Point(63, 17)
         Me.lbl_auth_name.Name = "lbl_auth_name"
-        Me.lbl_auth_name.Size = New System.Drawing.Size(83, 18)
+        Me.lbl_auth_name.Size = New System.Drawing.Size(95, 18)
         Me.lbl_auth_name.TabIndex = 14
-        Me.lbl_auth_name.Text = "Super User"
+        Me.lbl_auth_name.Text = "Administrator"
         '
         'datagrid_transaction
         '
@@ -475,6 +475,22 @@ Partial Class frm_dashboard
         Me.Panel1.Size = New System.Drawing.Size(919, 424)
         Me.Panel1.TabIndex = 29
         '
+        'TextBox2
+        '
+        Me.TextBox2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox2.Enabled = False
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft PhagsPa", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.Location = New System.Drawing.Point(402, 198)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(5)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.ReadOnly = True
+        Me.TextBox2.Size = New System.Drawing.Size(113, 27)
+        Me.TextBox2.TabIndex = 31
+        Me.TextBox2.WordWrap = False
+        '
         'lbl_clock
         '
         Me.lbl_clock.AutoSize = True
@@ -519,13 +535,6 @@ Partial Class frm_dashboard
         Me.btn_minimize.Text = "_"
         Me.btn_minimize.UseVisualStyleBackColor = False
         '
-        'Timer2
-        '
-        Me.Timer2.Interval = 500
-        '
-        'Timer1
-        '
-        '
         'TextBox1
         '
         Me.TextBox1.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -541,22 +550,6 @@ Partial Class frm_dashboard
         Me.TextBox1.Size = New System.Drawing.Size(106, 27)
         Me.TextBox1.TabIndex = 27
         Me.TextBox1.WordWrap = False
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox2.Enabled = False
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft PhagsPa", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(402, 198)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(5)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.ReadOnly = True
-        Me.TextBox2.Size = New System.Drawing.Size(113, 27)
-        Me.TextBox2.TabIndex = 31
-        Me.TextBox2.WordWrap = False
         '
         'TextBox3
         '
@@ -589,6 +582,13 @@ Partial Class frm_dashboard
         Me.TextBox4.Size = New System.Drawing.Size(125, 27)
         Me.TextBox4.TabIndex = 33
         Me.TextBox4.WordWrap = False
+        '
+        'Timer2
+        '
+        Me.Timer2.Interval = 500
+        '
+        'Timer1
+        '
         '
         'frm_dashboard
         '

@@ -15,10 +15,6 @@ Public Class frm_dashboard
         End If
     End Sub
 
-    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbl_auth_name.Click
-
-    End Sub
-
     Private Sub frm_dashboard_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         datagrid_transaction.SelectionMode =
         DataGridViewSelectionMode.FullRowSelect
@@ -393,4 +389,5 @@ Public Class frm_dashboard
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         lbl_clock.Text = DateTime.Now.ToString("hh:mm tt")
     End Sub
+
 End Class

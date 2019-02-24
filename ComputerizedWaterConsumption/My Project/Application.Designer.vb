@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.ComputerizedWaterConsumption.frm_login
+            Me.MainForm = Global.ComputerizedWaterConsumption.frm_splashscreen
         End Sub
     End Class
 End Namespace
