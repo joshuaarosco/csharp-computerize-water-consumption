@@ -39,7 +39,9 @@ Partial Class frm_transaction
         Me.btn_back = New System.Windows.Forms.Button()
         Me.btn_total = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btn_update = New System.Windows.Forms.Button()
         Me.btn_minimize = New System.Windows.Forms.Button()
+        Me.btn_logout = New System.Windows.Forms.Button()
         CType(Me.datagrid_transaction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -79,7 +81,7 @@ Partial Class frm_transaction
         Me.btn_calculate.FlatAppearance.BorderSize = 0
         Me.btn_calculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_calculate.ForeColor = System.Drawing.SystemColors.Control
-        Me.btn_calculate.Location = New System.Drawing.Point(32, 351)
+        Me.btn_calculate.Location = New System.Drawing.Point(32, 350)
         Me.btn_calculate.Name = "btn_calculate"
         Me.btn_calculate.Size = New System.Drawing.Size(278, 30)
         Me.btn_calculate.TabIndex = 4
@@ -213,7 +215,7 @@ Partial Class frm_transaction
         Me.btn_back.FlatAppearance.BorderSize = 0
         Me.btn_back.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_back.ForeColor = System.Drawing.SystemColors.MenuBar
-        Me.btn_back.Location = New System.Drawing.Point(337, 387)
+        Me.btn_back.Location = New System.Drawing.Point(336, 386)
         Me.btn_back.Name = "btn_back"
         Me.btn_back.Size = New System.Drawing.Size(113, 30)
         Me.btn_back.TabIndex = 15
@@ -236,11 +238,28 @@ Partial Class frm_transaction
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btn_update)
+        Me.Panel1.Controls.Add(Me.btn_back)
         Me.Panel1.Controls.Add(Me.btn_minimize)
+        Me.Panel1.Controls.Add(Me.btn_logout)
+        Me.Panel1.Controls.Add(Me.btn_calculate)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(861, 424)
         Me.Panel1.TabIndex = 17
+        '
+        'btn_update
+        '
+        Me.btn_update.BackColor = System.Drawing.Color.DodgerBlue
+        Me.btn_update.FlatAppearance.BorderSize = 0
+        Me.btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_update.ForeColor = System.Drawing.SystemColors.Control
+        Me.btn_update.Location = New System.Drawing.Point(32, 369)
+        Me.btn_update.Name = "btn_update"
+        Me.btn_update.Size = New System.Drawing.Size(278, 30)
+        Me.btn_update.TabIndex = 18
+        Me.btn_update.Text = "Update"
+        Me.btn_update.UseVisualStyleBackColor = False
         '
         'btn_minimize
         '
@@ -256,13 +275,25 @@ Partial Class frm_transaction
         Me.btn_minimize.Text = "_"
         Me.btn_minimize.UseVisualStyleBackColor = False
         '
+        'btn_logout
+        '
+        Me.btn_logout.BackColor = System.Drawing.Color.DarkGray
+        Me.btn_logout.FlatAppearance.BorderSize = 0
+        Me.btn_logout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_logout.ForeColor = System.Drawing.SystemColors.MenuBar
+        Me.btn_logout.Location = New System.Drawing.Point(336, 386)
+        Me.btn_logout.Name = "btn_logout"
+        Me.btn_logout.Size = New System.Drawing.Size(113, 30)
+        Me.btn_logout.TabIndex = 18
+        Me.btn_logout.Text = "Log Out"
+        Me.btn_logout.UseVisualStyleBackColor = False
+        '
         'frm_transaction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(861, 424)
         Me.Controls.Add(Me.btn_total)
-        Me.Controls.Add(Me.btn_back)
         Me.Controls.Add(Me.btn_history)
         Me.Controls.Add(Me.lbl_title)
         Me.Controls.Add(Me.Label3)
@@ -273,7 +304,6 @@ Partial Class frm_transaction
         Me.Controls.Add(Me.txt_usedcubicmeter)
         Me.Controls.Add(Me.lbl_username)
         Me.Controls.Add(Me.txt_cubicmeter)
-        Me.Controls.Add(Me.btn_calculate)
         Me.Controls.Add(Me.btn_exit)
         Me.Controls.Add(Me.datagrid_transaction)
         Me.Controls.Add(Me.Panel1)
@@ -305,4 +335,6 @@ Partial Class frm_transaction
     Friend WithEvents btn_total As System.Windows.Forms.Button
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents btn_minimize As System.Windows.Forms.Button
+    Friend WithEvents btn_logout As System.Windows.Forms.Button
+    Friend WithEvents btn_update As System.Windows.Forms.Button
 End Class

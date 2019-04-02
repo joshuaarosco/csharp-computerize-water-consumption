@@ -35,6 +35,8 @@ Partial Class frm_login
         Me.btn_minimize = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.lbl_signup = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,6 +120,8 @@ Partial Class frm_login
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.lbl_signup)
         Me.Panel1.Controls.Add(Me.btn_minimize)
         Me.Panel1.Location = New System.Drawing.Point(267, 0)
         Me.Panel1.Name = "Panel1"
@@ -159,6 +163,25 @@ Partial Class frm_login
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
+        'lbl_signup
+        '
+        Me.lbl_signup.AutoSize = True
+        Me.lbl_signup.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.lbl_signup.Location = New System.Drawing.Point(90, 327)
+        Me.lbl_signup.Name = "lbl_signup"
+        Me.lbl_signup.Size = New System.Drawing.Size(81, 13)
+        Me.lbl_signup.TabIndex = 9
+        Me.lbl_signup.Text = "Sign up now >>"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(34, 327)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(58, 13)
+        Me.Label1.TabIndex = 10
+        Me.Label1.Text = "New user?"
+        '
         'frm_login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -180,6 +203,7 @@ Partial Class frm_login
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login Form"
         Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -197,5 +221,7 @@ Partial Class frm_login
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents btn_minimize As System.Windows.Forms.Button
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lbl_signup As System.Windows.Forms.Label
 
 End Class

@@ -3,6 +3,7 @@
 Public Class frm_history
 
     Public Property IDPass As String
+    Public Property UserType As String
 
     Dim table As New DataTable()
     Dim MysqlConn As MySqlConnection
@@ -12,6 +13,7 @@ Public Class frm_history
         Dim frm = New frm_transaction()
 
         frm.IDPass = IDPass
+        frm.UserType = UserType
 
         frm.Show()
         Me.Hide()

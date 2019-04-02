@@ -23,6 +23,9 @@ Partial Class frm_dashboard
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_dashboard))
         Me.btn_exit = New System.Windows.Forms.Button()
         Me.lbl_auth_name = New System.Windows.Forms.Label()
@@ -57,13 +60,13 @@ Partial Class frm_dashboard
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.lbl_clock = New System.Windows.Forms.Label()
         Me.lbl_greet = New System.Windows.Forms.Label()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.btn_minimize = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.datagrid_transaction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl_account.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -102,12 +105,36 @@ Partial Class frm_dashboard
         Me.datagrid_transaction.AllowUserToResizeRows = False
         Me.datagrid_transaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.datagrid_transaction.BackgroundColor = System.Drawing.SystemColors.Menu
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.datagrid_transaction.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.datagrid_transaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.datagrid_transaction.DefaultCellStyle = DataGridViewCellStyle2
         Me.datagrid_transaction.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagrid_transaction.GridColor = System.Drawing.SystemColors.ScrollBar
         Me.datagrid_transaction.Location = New System.Drawing.Point(337, 37)
         Me.datagrid_transaction.MultiSelect = False
         Me.datagrid_transaction.Name = "datagrid_transaction"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.datagrid_transaction.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.datagrid_transaction.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
         Me.datagrid_transaction.Size = New System.Drawing.Size(576, 344)
         Me.datagrid_transaction.TabIndex = 15
@@ -132,9 +159,9 @@ Partial Class frm_dashboard
         Me.btn_view_transaction.FlatAppearance.BorderSize = 0
         Me.btn_view_transaction.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_view_transaction.ForeColor = System.Drawing.SystemColors.Control
-        Me.btn_view_transaction.Location = New System.Drawing.Point(337, 387)
+        Me.btn_view_transaction.Location = New System.Drawing.Point(336, 386)
         Me.btn_view_transaction.Name = "btn_view_transaction"
-        Me.btn_view_transaction.Size = New System.Drawing.Size(188, 30)
+        Me.btn_view_transaction.Size = New System.Drawing.Size(284, 30)
         Me.btn_view_transaction.TabIndex = 17
         Me.btn_view_transaction.Text = "View Meter Trail"
         Me.btn_view_transaction.UseVisualStyleBackColor = False
@@ -146,9 +173,9 @@ Partial Class frm_dashboard
         Me.btn_view_account.FlatAppearance.BorderSize = 0
         Me.btn_view_account.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_view_account.ForeColor = System.Drawing.SystemColors.Control
-        Me.btn_view_account.Location = New System.Drawing.Point(531, 387)
+        Me.btn_view_account.Location = New System.Drawing.Point(627, 387)
         Me.btn_view_account.Name = "btn_view_account"
-        Me.btn_view_account.Size = New System.Drawing.Size(188, 30)
+        Me.btn_view_account.Size = New System.Drawing.Size(286, 30)
         Me.btn_view_account.TabIndex = 18
         Me.btn_view_account.Text = "View Account"
         Me.btn_view_account.UseVisualStyleBackColor = False
@@ -457,6 +484,7 @@ Partial Class frm_dashboard
         Me.Panel1.Controls.Add(Me.TextBox2)
         Me.Panel1.Controls.Add(Me.Label8)
         Me.Panel1.Controls.Add(Me.lbl_clock)
+        Me.Panel1.Controls.Add(Me.btn_view_transaction)
         Me.Panel1.Controls.Add(Me.lbl_no_of_user)
         Me.Panel1.Controls.Add(Me.lbl_greet)
         Me.Panel1.Controls.Add(Me.lbl_unpaid)
@@ -510,16 +538,6 @@ Partial Class frm_dashboard
         Me.lbl_greet.Size = New System.Drawing.Size(52, 13)
         Me.lbl_greet.TabIndex = 29
         Me.lbl_greet.Text = "Greetings"
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackgroundImage = Global.ComputerizedWaterConsumption.My.Resources.Resources.face02
-        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox2.Location = New System.Drawing.Point(9, 9)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(50, 48)
-        Me.PictureBox2.TabIndex = 28
-        Me.PictureBox2.TabStop = False
         '
         'btn_minimize
         '
@@ -590,6 +608,16 @@ Partial Class frm_dashboard
         'Timer1
         '
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImage = Global.ComputerizedWaterConsumption.My.Resources.Resources.face02
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox2.Location = New System.Drawing.Point(9, 9)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(50, 48)
+        Me.PictureBox2.TabIndex = 28
+        Me.PictureBox2.TabStop = False
+        '
         'frm_dashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -598,7 +626,6 @@ Partial Class frm_dashboard
         Me.Controls.Add(Me.lbl_search)
         Me.Controls.Add(Me.txt_search)
         Me.Controls.Add(Me.btn_view_account)
-        Me.Controls.Add(Me.btn_view_transaction)
         Me.Controls.Add(Me.btn_create_account)
         Me.Controls.Add(Me.datagrid_transaction)
         Me.Controls.Add(Me.btn_exit)

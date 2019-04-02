@@ -3,6 +3,7 @@
 Public Class frm_login
     Dim MysqlConn As MySqlConnection
     Dim Command As MySqlCommand
+    Dim ID As String
 
     Private Sub btn_exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_exit.Click
         Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "  System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -22,7 +23,6 @@ Public Class frm_login
     End Sub
 
     Private Sub btn_login_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_login.Click
-        Dim frm = New frm_dashboard()
 
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
@@ -35,19 +35,30 @@ Public Class frm_login
             Query = "select * from computerized_water_consumption_db.user where username = '" & txt_username.Text & "' and password = '" & txt_password.Text & "'"
             Command = New MySqlCommand(Query, MysqlConn)
             Reader = Command.ExecuteReader
-
             Dim count As Integer
             count = 0
 
             While Reader.Read
                 count = count + 1
-
             End While
 
             If count = 1 Then
                 MessageBox.Show("Successfully login!")
-                frm.Show()
-                Me.Hide()
+                If Reader("user_type") = "user" Then
+                    Dim frm = New frm_transaction()
+                    
+                    frm.IDPass = Reader("id")
+                    frm.UserType = Reader("user_type")
+
+                    frm.Show()
+                    Me.Hide()
+                Else
+                    Dim frm = New frm_dashboard()
+                    frm.UserType = Reader("user_type")
+                    frm.Show()
+                    Me.Hide()
+                End If
+
             Else
                 MessageBox.Show("Wrong username or password.")
             End If
@@ -78,5 +89,12 @@ Public Class frm_login
 
     Private Sub btn_minimize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_minimize.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub lbl_signup_Click(sender As System.Object, e As System.EventArgs) Handles lbl_signup.Click
+        Dim frm = New frm_signup()
+
+        frm.Show()
+        Me.Hide()
     End Sub
 End Class

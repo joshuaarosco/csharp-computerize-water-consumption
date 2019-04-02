@@ -1,6 +1,9 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class frm_dashboard
+
+    Public Property UserType As String
+
     Dim MysqlConn As MySqlConnection
     Dim Command As MySqlCommand
     Dim table As New DataTable()
@@ -88,7 +91,7 @@ Public Class frm_dashboard
     End Sub
 
     Private Sub datagrid_transaction_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles datagrid_transaction.CellContentClick
- 
+
         If (e.RowIndex > -1) Then
 
             Dim value As Object = datagrid_transaction.Rows(e.RowIndex).Cells(0).Value
@@ -131,6 +134,7 @@ Public Class frm_dashboard
         Dim frm = New frm_transaction()
 
         frm.IDPass = ID
+        frm.UserType = UserType
 
         frm.Show()
         Me.Hide()

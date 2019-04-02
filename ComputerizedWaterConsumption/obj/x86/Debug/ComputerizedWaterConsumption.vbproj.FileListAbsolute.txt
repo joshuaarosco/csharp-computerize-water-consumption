@@ -24,3 +24,4 @@ C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption
 C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.xml
 C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.pdb
 C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_splashscreen.resources
+C:\Users\user\documents\visual studio 2010\Projects\ComputerizedWaterConsumption\ComputerizedWaterConsumption\obj\x86\Debug\ComputerizedWaterConsumption.frm_signup.resources

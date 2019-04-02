@@ -3,16 +3,19 @@
 Public Class frm_transaction
 
     Public Property IDPass As String
+    Public Property UserType As String
 
     Dim MysqlConn As MySqlConnection
     Dim table As New DataTable()
     Dim Command As MySqlCommand
-    Dim cubic_meter, prev_cubic_meter, used_cubic_meter, new_cubic_meter As Integer
+    Dim cubic_meter, prev_cubic_meter, used_cubic_meter, new_cubic_meter, tracker_id, selected_tracker_id As Integer
 
     Private Sub frm_transaction_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         datagrid_transaction.SelectionMode =
         DataGridViewSelectionMode.FullRowSelect
         datagrid_transaction.MultiSelect = False
+
+        btn_update.Visible = False
 
         table.Columns.Add("ID", Type.GetType("System.String"))
         table.Columns.Add("Previous Cubic Meter", Type.GetType("System.String"))
@@ -22,8 +25,11 @@ Public Class frm_transaction
         table.Columns.Add("Created At", Type.GetType("System.String"))
 
         datagrid_transaction.DataSource = table
-
-        Console.Write(IDPass)
+        If UserType = "user" Then
+            btn_back.Visible = False
+        Else
+            btn_back.Visible = True
+        End If
 
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
@@ -45,7 +51,19 @@ Public Class frm_transaction
 
 
     Private Sub datagrid_transaction_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles datagrid_transaction.CellContentClick
+        If (e.RowIndex > -1) Then
 
+            Dim value As Object = datagrid_transaction.Rows(e.RowIndex).Cells(0).Value
+
+            Console.WriteLine("Im the value : " + value)
+
+            If IsDBNull(value) Then
+                btn_update.Visible = False
+            Else
+                'btn_update.Visible = True
+                'selected_tracker_id = value
+            End If
+        End If
     End Sub
 
     Private Sub btn_exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_exit.Click
@@ -78,7 +96,7 @@ Public Class frm_transaction
                                 Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()),
                                 Convert.ToDecimal(txt_peso.Text().ToString()))
 
-                table.Rows.Add("",
+                table.Rows.Add(tracker_id,
                                Convert.ToDecimal(prev_cubic_meter.ToString()),
                                 Convert.ToDecimal(txt_cubicmeter.Text().ToString()),
                                 Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()),
@@ -88,6 +106,8 @@ Public Class frm_transaction
                 prev_cubic_meter = Convert.ToDecimal(txt_cubicmeter.Text().ToString())
 
                 datagrid_transaction.DataSource = table
+
+                tracker_id += 1
 
                 'get_total()
             End If
@@ -101,6 +121,7 @@ Public Class frm_transaction
         Dim frm = New frm_history()
 
         frm.IDPass = IDPass
+        frm.UserType = UserType
 
         frm.Show()
         Me.Hide()
@@ -135,10 +156,17 @@ Public Class frm_transaction
     Sub get_meter_track()
         MysqlConn.Open()
         Dim Query As String
+        Dim Counter As String
         Query = "select * from computerized_water_consumption_db.meter_tracker where user_id = '" & IDPass & "' and status is null"
+        Counter = "select count(*) from computerized_water_consumption_db.meter_tracker"
         Dim Adapter As New MySqlDataAdapter(Query, MysqlConn)
-        Dim Dataset As New DataSet()
+        Dim Count As Int16
+        Command = New MySqlCommand(Counter, MysqlConn)
+        Count = Command.ExecuteScalar
+        tracker_id = Convert.ToInt16(Count + 1)
 
+        Dim Dataset As New DataSet()
+        Dim columnButton As New DataGridViewButtonColumn
         If Adapter.Fill(Dataset) Then
             For x As Integer = 0 To Dataset.Tables(0).Rows.Count - 1
                 Dim id As String = Dataset.Tables(0).Rows(x)("id").ToString()
@@ -152,12 +180,16 @@ Public Class frm_transaction
             Next
 
             datagrid_transaction.DataSource = table
+            'columnButton.Text = "Select"
+            'columnButton.UseColumnTextForButtonValue = True
+            'columnButton.Width = 8
+            'datagrid_transaction.Columns(0).Visible = False
+            'datagrid_transaction.Columns.Add(columnButton)
         End If
         MysqlConn.Close()
     End Sub
 
     Sub create_meter_track(ByVal val_previous_meter, ByVal val_current_cubic_meter, ByVal val_used_cubic_meter, ByVal val_peso)
-
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
@@ -350,7 +382,7 @@ Public Class frm_transaction
         Try
             MysqlConn.Open()
             Dim Query As String
-            Query = "insert into computerized_water_consumption_db.meter_transaction (user_id,total_cubic_meter,peso,status,created_at) values ('" & IDPass & "', '" & total_cubic_meter & "','" & peso & "', 'unpaid', '" & DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") & "')"
+            Query = "insert into computerized_water_consumption_db.meter_transaction set user_id (user_id,total_cubic_meter,peso,status,created_at) values ('" & IDPass & "', '" & total_cubic_meter & "','" & peso & "', 'unpaid', '" & DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") & "')"
             Command = New MySqlCommand(Query, MysqlConn)
             Reader = Command.ExecuteReader
             MysqlConn.Close()
@@ -363,5 +395,48 @@ Public Class frm_transaction
 
     Private Sub btn_minimize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_minimize.Click
         Me.WindowState = FormWindowState.Minimized
+    End Sub
+
+    Private Sub btn_logout_Click(sender As System.Object, e As System.EventArgs) Handles btn_logout.Click
+        Dim result As Integer = MessageBox.Show("Are you sure you want to logout?", "  System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.No Then
+
+        ElseIf result = DialogResult.Yes Then
+            Dim frm = New frm_login()
+
+            frm.Show()
+            Me.Hide()
+        End If
+    End Sub
+
+    Sub update_meter_track(ByVal val_previous_meter, ByVal val_current_cubic_meter, ByVal val_used_cubic_meter, ByVal val_peso)
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
+        Dim Reader As MySqlDataReader
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "update computerized_water_consumption_db.meter_tracker set previous_cubic_meter = '" & val_previous_meter & "', current_cubic_meter = '" & val_current_cubic_meter & "',used_cubic_meter = '" & val_used_cubic_meter & "',peso = '" & val_peso & "' WHERE id=" & selected_tracker_id
+            Command = New MySqlCommand(Query, MysqlConn)
+            Reader = Command.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+    End Sub
+
+
+    Private Sub btn_update_Click(sender As System.Object, e As System.EventArgs) Handles btn_update.Click
+        btn_update.Visible = False
+
+        update_meter_track(Convert.ToDecimal(prev_cubic_meter.ToString()),
+                                Convert.ToDecimal(txt_cubicmeter.Text().ToString()),
+                                Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()),
+                                Convert.ToDecimal(txt_peso.Text().ToString()))
+
+
     End Sub
 End Class
