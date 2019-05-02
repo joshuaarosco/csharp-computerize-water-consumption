@@ -8,6 +8,7 @@ Public Class frm_dashboard
     Dim Command As MySqlCommand
     Dim table As New DataTable()
     Dim ID As String
+    Dim price As String
 
     Private Sub btn_exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_exit.Click
         Dim result As Integer = MessageBox.Show("Are you sure you want to exit?", "  System Message", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -18,6 +19,25 @@ Public Class frm_dashboard
         End If
     End Sub
 
+    Function get_price()
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
+
+        MysqlConn.Open()
+        Dim NewReader As MySqlDataReader
+        Dim Query As String
+        Query = "select * from computerized_water_consumption_db.system_info order by updated_at desc limit 1 "
+        Command = New MySqlCommand(Query, MysqlConn)
+        NewReader = Command.ExecuteReader
+        While NewReader.Read
+            price = NewReader("price")
+        End While
+        Return price
+        MysqlConn.Close()
+    End Function
+
+
     Private Sub frm_dashboard_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         datagrid_transaction.SelectionMode =
         DataGridViewSelectionMode.FullRowSelect
@@ -26,6 +46,8 @@ Public Class frm_dashboard
         lbl_date.Text = DateTime.Now.ToString("MMM dd, yyyy")
         lbl_greet.Text = get_greetings()
         Timer1.Enabled = True
+
+        txt_price.Text = get_price()
 
         Dim columnButton As New DataGridViewButtonColumn
         table.Columns.Add("ID", Type.GetType("System.String"))
@@ -392,6 +414,25 @@ Public Class frm_dashboard
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         lbl_clock.Text = DateTime.Now.ToString("hh:mm tt")
+    End Sub
+
+    Private Sub btn_update_price_Click(sender As System.Object, e As System.EventArgs) Handles btn_update_price.Click
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
+        Dim Reader As MySqlDataReader
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "insert into computerized_water_consumption_db.system_info (price,updated_at) values ('" & txt_price.Text & "', '" & DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") & "')"
+            Command = New MySqlCommand(Query, MysqlConn)
+            Reader = Command.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
     End Sub
 
 End Class

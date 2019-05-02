@@ -39,6 +39,7 @@ Partial Class frm_transaction
         Me.btn_back = New System.Windows.Forms.Button()
         Me.btn_total = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.btn_cancel = New System.Windows.Forms.Button()
         Me.btn_update = New System.Windows.Forms.Button()
         Me.btn_minimize = New System.Windows.Forms.Button()
         Me.btn_logout = New System.Windows.Forms.Button()
@@ -238,6 +239,7 @@ Partial Class frm_transaction
         'Panel1
         '
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.btn_cancel)
         Me.Panel1.Controls.Add(Me.btn_update)
         Me.Panel1.Controls.Add(Me.btn_back)
         Me.Panel1.Controls.Add(Me.btn_minimize)
@@ -248,15 +250,28 @@ Partial Class frm_transaction
         Me.Panel1.Size = New System.Drawing.Size(861, 424)
         Me.Panel1.TabIndex = 17
         '
+        'btn_cancel
+        '
+        Me.btn_cancel.BackColor = System.Drawing.Color.Coral
+        Me.btn_cancel.FlatAppearance.BorderSize = 0
+        Me.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_cancel.ForeColor = System.Drawing.SystemColors.Control
+        Me.btn_cancel.Location = New System.Drawing.Point(170, 350)
+        Me.btn_cancel.Name = "btn_cancel"
+        Me.btn_cancel.Size = New System.Drawing.Size(140, 30)
+        Me.btn_cancel.TabIndex = 19
+        Me.btn_cancel.Text = "Cancel"
+        Me.btn_cancel.UseVisualStyleBackColor = False
+        '
         'btn_update
         '
         Me.btn_update.BackColor = System.Drawing.Color.DodgerBlue
         Me.btn_update.FlatAppearance.BorderSize = 0
         Me.btn_update.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btn_update.ForeColor = System.Drawing.SystemColors.Control
-        Me.btn_update.Location = New System.Drawing.Point(32, 369)
+        Me.btn_update.Location = New System.Drawing.Point(32, 359)
         Me.btn_update.Name = "btn_update"
-        Me.btn_update.Size = New System.Drawing.Size(278, 30)
+        Me.btn_update.Size = New System.Drawing.Size(139, 30)
         Me.btn_update.TabIndex = 18
         Me.btn_update.Text = "Update"
         Me.btn_update.UseVisualStyleBackColor = False
@@ -337,4 +352,5 @@ Partial Class frm_transaction
     Friend WithEvents btn_minimize As System.Windows.Forms.Button
     Friend WithEvents btn_logout As System.Windows.Forms.Button
     Friend WithEvents btn_update As System.Windows.Forms.Button
+    Friend WithEvents btn_cancel As System.Windows.Forms.Button
 End Class

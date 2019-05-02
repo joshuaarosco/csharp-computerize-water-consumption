@@ -8,7 +8,8 @@ Public Class frm_transaction
     Dim MysqlConn As MySqlConnection
     Dim table As New DataTable()
     Dim Command As MySqlCommand
-    Dim cubic_meter, prev_cubic_meter, used_cubic_meter, new_cubic_meter, tracker_id, selected_tracker_id As Integer
+    Dim price As String
+    Dim cubic_meter, prev_cubic_meter, used_cubic_meter, new_cubic_meter, tracker_id, selected_tracker_id, updated_prev_cubic_meter As Integer
 
     Private Sub frm_transaction_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         datagrid_transaction.SelectionMode =
@@ -16,6 +17,7 @@ Public Class frm_transaction
         datagrid_transaction.MultiSelect = False
 
         btn_update.Visible = False
+        btn_cancel.Visible = False
 
         table.Columns.Add("ID", Type.GetType("System.String"))
         table.Columns.Add("Previous Cubic Meter", Type.GetType("System.String"))
@@ -52,16 +54,41 @@ Public Class frm_transaction
 
     Private Sub datagrid_transaction_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles datagrid_transaction.CellContentClick
         If (e.RowIndex > -1) Then
-
+            Console.WriteLine(e.RowIndex)
             Dim value As Object = datagrid_transaction.Rows(e.RowIndex).Cells(0).Value
 
-            Console.WriteLine("Im the value : " + value)
+            'Console.WriteLine("Im the value : " + value)
 
             If IsDBNull(value) Then
                 btn_update.Visible = False
+                btn_cancel.Visible = False
             Else
-                'btn_update.Visible = True
-                'selected_tracker_id = value
+                btn_update.Visible = True
+                btn_cancel.Visible = True
+                selected_tracker_id = value
+                Try
+                    MysqlConn.Open()
+                    Dim Reader As MySqlDataReader
+                    Dim Query_get_previous_meter As String
+                    Query_get_previous_meter = "select * from computerized_water_consumption_db.meter_tracker where id = '" & value & "' "
+                    Command = New MySqlCommand(Query_get_previous_meter, MysqlConn)
+                    Reader = Command.ExecuteReader
+
+                    While Reader.Read
+                        txt_previouscubicmeter.Text = Reader("previous_cubic_meter")
+                        txt_cubicmeter.Text = Reader("current_cubic_meter")
+                        txt_usedcubicmeter.Text = Reader("used_cubic_meter")
+                        txt_peso.Text = Reader("peso")
+                        updated_prev_cubic_meter = Reader("previous_cubic_meter")
+                        Exit While
+                    End While
+
+                    MysqlConn.Close()
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message)
+                Finally
+                    MysqlConn.Dispose()
+                End Try
             End If
         End If
     End Sub
@@ -88,7 +115,7 @@ Public Class frm_transaction
                 MessageBox.Show("Cubic meter should be higher or equal ")
             Else
                 txt_usedcubicmeter.Text() = Convert.ToDecimal(txt_cubicmeter.Text().ToString()) - prev_cubic_meter
-                txt_peso.Text() = Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()) * 34.75
+                txt_peso.Text() = Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()) * get_price()
                 txt_previouscubicmeter.Text() = txt_cubicmeter.Text().ToString()
 
                 create_meter_track(Convert.ToDecimal(prev_cubic_meter.ToString()),
@@ -180,11 +207,11 @@ Public Class frm_transaction
             Next
 
             datagrid_transaction.DataSource = table
-            'columnButton.Text = "Select"
-            'columnButton.UseColumnTextForButtonValue = True
-            'columnButton.Width = 8
-            'datagrid_transaction.Columns(0).Visible = False
-            'datagrid_transaction.Columns.Add(columnButton)
+            columnButton.Text = "Select"
+            columnButton.UseColumnTextForButtonValue = True
+            columnButton.Width = 8
+            datagrid_transaction.Columns(0).Visible = False
+            datagrid_transaction.Columns.Add(columnButton)
         End If
         MysqlConn.Close()
     End Sub
@@ -382,7 +409,7 @@ Public Class frm_transaction
         Try
             MysqlConn.Open()
             Dim Query As String
-            Query = "insert into computerized_water_consumption_db.meter_transaction set user_id (user_id,total_cubic_meter,peso,status,created_at) values ('" & IDPass & "', '" & total_cubic_meter & "','" & peso & "', 'unpaid', '" & DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") & "')"
+            Query = "insert into computerized_water_consumption_db.meter_transaction (user_id,total_cubic_meter,peso,status,created_at) values ('" & IDPass & "', '" & total_cubic_meter & "','" & peso & "', 'unpaid', '" & DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") & "')"
             Command = New MySqlCommand(Query, MysqlConn)
             Reader = Command.ExecuteReader
             MysqlConn.Close()
@@ -430,13 +457,67 @@ Public Class frm_transaction
 
 
     Private Sub btn_update_Click(sender As System.Object, e As System.EventArgs) Handles btn_update.Click
-        btn_update.Visible = False
 
-        update_meter_track(Convert.ToDecimal(prev_cubic_meter.ToString()),
-                                Convert.ToDecimal(txt_cubicmeter.Text().ToString()),
-                                Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()),
-                                Convert.ToDecimal(txt_peso.Text().ToString()))
+        If (txt_cubicmeter.Text().ToString() = "") Then
+            MessageBox.Show("Cubic meter field is required")
+        ElseIf IsNumeric(txt_cubicmeter.Text().ToString()) Then
+            If (Convert.ToInt32(txt_cubicmeter.Text()) < Convert.ToInt32(txt_previouscubicmeter.Text())) Then
+                MessageBox.Show("Cubic meter should be higher or equal ")
+            Else
+                btn_update.Visible = False
+                btn_cancel.Visible = False
+                txt_usedcubicmeter.Text() = Convert.ToDecimal(txt_cubicmeter.Text().ToString()) - updated_prev_cubic_meter
+                txt_peso.Text() = Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()) * get_price()
+                txt_previouscubicmeter.Text() = txt_cubicmeter.Text().ToString()
 
+                update_meter_track(Convert.ToDecimal(updated_prev_cubic_meter.ToString()),
+                                    Convert.ToDecimal(txt_cubicmeter.Text().ToString()),
+                                    Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()),
+                                    Convert.ToDecimal(txt_peso.Text().ToString()))
 
+                'table.Rows.Add(tracker_id,
+                '           Convert.ToDecimal(updated_prev_cubic_meter.ToString()),
+                '          Convert.ToDecimal(txt_cubicmeter.Text().ToString()),
+                '         Convert.ToDecimal(txt_usedcubicmeter.Text().ToString()),
+                '        Convert.ToDecimal(txt_peso.Text().ToString()),
+                '       DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"))
+                'prev_cubic_meter = Convert.ToDecimal(txt_cubicmeter.Text().ToString())
+
+                'datagrid_transaction.DataSource = table
+
+                'tracker_id += 1
+
+                'get_total()
+            End If
+        Else
+            MessageBox.Show("Cubic meter field is should be numeric")
+        End If
     End Sub
+
+    Private Sub btn_cancel_Click(sender As System.Object, e As System.EventArgs) Handles btn_cancel.Click
+        btn_cancel.Visible = False
+        btn_update.Visible = False
+        txt_previouscubicmeter.Text = prev_cubic_meter
+        txt_peso.Text = "0.00"
+        txt_usedcubicmeter.Text = "0.00"
+    End Sub
+
+    Function get_price()
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=dev123;database=computerized_water_consumption_db"
+
+        MysqlConn.Open()
+        Dim NewReader As MySqlDataReader
+        Dim Query As String
+        Query = "select * from computerized_water_consumption_db.system_info order by updated_at desc limit 1 "
+        Command = New MySqlCommand(Query, MysqlConn)
+        NewReader = Command.ExecuteReader
+        While NewReader.Read
+            price = NewReader("price")
+        End While
+        Return price
+        MysqlConn.Close()
+    End Function
+
 End Class

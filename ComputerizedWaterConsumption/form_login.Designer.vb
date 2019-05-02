@@ -32,11 +32,11 @@ Partial Class frm_login
         Me.lbl_password = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lbl_signup = New System.Windows.Forms.Label()
         Me.btn_minimize = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.lbl_signup = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,6 +128,25 @@ Partial Class frm_login
         Me.Panel1.Size = New System.Drawing.Size(283, 350)
         Me.Panel1.TabIndex = 7
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(34, 327)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(58, 13)
+        Me.Label1.TabIndex = 10
+        Me.Label1.Text = "New user?"
+        '
+        'lbl_signup
+        '
+        Me.lbl_signup.AutoSize = True
+        Me.lbl_signup.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.lbl_signup.Location = New System.Drawing.Point(90, 327)
+        Me.lbl_signup.Name = "lbl_signup"
+        Me.lbl_signup.Size = New System.Drawing.Size(81, 13)
+        Me.lbl_signup.TabIndex = 9
+        Me.lbl_signup.Text = "Sign up now >>"
+        '
         'btn_minimize
         '
         Me.btn_minimize.BackColor = System.Drawing.Color.Gainsboro
@@ -163,27 +182,9 @@ Partial Class frm_login
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
-        'lbl_signup
-        '
-        Me.lbl_signup.AutoSize = True
-        Me.lbl_signup.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.lbl_signup.Location = New System.Drawing.Point(90, 327)
-        Me.lbl_signup.Name = "lbl_signup"
-        Me.lbl_signup.Size = New System.Drawing.Size(81, 13)
-        Me.lbl_signup.TabIndex = 9
-        Me.lbl_signup.Text = "Sign up now >>"
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(34, 327)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(58, 13)
-        Me.Label1.TabIndex = 10
-        Me.Label1.Text = "New user?"
-        '
         'frm_login
         '
+        Me.AcceptButton = Me.btn_login
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(550, 350)

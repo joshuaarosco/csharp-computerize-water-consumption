@@ -43,7 +43,7 @@ Public Class frm_login
             End While
 
             If count = 1 Then
-                MessageBox.Show("Successfully login!")
+                'MessageBox.Show("Successfully login!")
                 If Reader("user_type") = "user" Then
                     Dim frm = New frm_transaction()
                     
